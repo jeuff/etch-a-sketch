@@ -1,2 +1,2 @@
 # etch-a-sketch
-A project for learning
+A web app you can etch a sketch
