@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>Etch a sketch</title>
+</head>
+<body>
+    <h1 class="title">Etch A Sketch</h1>
+    <div class="gridBody">
+    <!-- Grid items add to here with js -->
+    </div>
+    <h4 id="sizeText">16x16</h4>
+    <input id="sizeSlider" type="range" value="16" min="1" max="64">
+    <script>
+        let size = 16
+        let html = '';
+        const gridBody = document.getElementsByClassName("gridBody")[0];
+        const sizeSlider = document.getElementById("sizeSlider");
+        const sizeText = document.getElementById("sizeText");
+
+        //Functions
+        function etchIt(element){
+            element.style.backgroundColor = "black";
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            gridBody.style.gridTemplate = "repeat("+size+", 1fr) / repeat("+size+", 1fr)";
+            for(i = 0; i < size*size; i++){
+                html += '<div  class="gridItemWhite" onclick="etchIt(this)"></div>';
+            }
+            gridBody.innerHTML = html;
+            html = '';
+        });
+        
+        
+        sizeSlider.addEventListener("input", (event) => {
+          let eventValue = event.target.value
+          gridBody.innerHTML = '';
+          sizeText.textContent = eventValue+"x"+eventValue;
+          gridBody.style.gridTemplate = "repeat("+eventValue+", 1fr) / repeat("+eventValue+", 1fr)";
+          for(z = 0; z < eventValue*eventValue; z++){
+            html += '<div  class="gridItemWhite" onclick="etchIt(this)"></div>';
+          }
+          gridBody.innerHTML = html;
+          html = '';
+        });
+    </script>
+</body>
+</html>
